@@ -1,0 +1,2 @@
+app.factory('VolunteerService',['$http',function($http){const backendUrl="/api/";function getBecomeVolunteer(){return $http({method:'POST',url:backendUrl+"BECOME_VOLUNTEER",headers:{'Content-Type':'application/x-www-form-urlencoded'}});}
+return{getBecomeVolunteer:getBecomeVolunteer,};}]);

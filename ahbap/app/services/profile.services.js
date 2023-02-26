@@ -1,0 +1,11 @@
+app.factory('ProfileService',['$http',function($http){const backendUrl="/api/";function deleteAccount(){return $http({method:'POST',url:backendUrl+"DELETE_ACCOUNT",headers:{'Content-Type':'application/x-www-form-urlencoded'}});}
+function getJobs(arananMeslekEncoded){return $http({method:'GET',url:backendUrl+"GET_JOBS?meslek="+arananMeslekEncoded,headers:{'Content-Type':'application/x-www-form-urlencoded'}});}
+function checkForActiveCampaigns(){return $http.get(backendUrl+"CHECK_ACTIVE_CAMPAIGNS");}
+function updateUserData(user_data){return $http({method:'POST',url:backendUrl+"UPDATE_USER_ADDITIONAL_DATA",data:JSON.stringify(user_data),headers:{'Content-Type':'application/json'}});}
+function resetPassword(pass,pass2){return $http({method:'POST',url:backendUrl+"RESET_PASSWORD",data:JSON.stringify({password:pass,passConf:pass2}),headers:{'Content-Type':'application/json'}});}
+function sendVerificationMail(){return $http({method:'GET',url:backendUrl+"SEND_VERIFICATION_MAIL"});}
+function sendVerificationSMS(){return $http({method:'POST',url:backendUrl+"SEND_VERIFICATION_SMS",headers:{'Content-Type':'application/json'}});}
+function sendVerificationSMSCode(verificationCode){return $http({method:'POST',url:backendUrl+"SEND_VERIFICATION_SMS_CODE",data:JSON.stringify(verificationCode),headers:{'Content-Type':'application/json'}});}
+function UploadProfilePhoto(file){var fd=new FormData();fd.append("file",file);return $http.post(backendUrl+"UPLOAD_PROFILE_PHOTO",fd,{transformRequest:angular.identity,headers:{"Content-Type":undefined,"Process-Data":false}});}
+function checkCandidateApplication(){return $http({method:'GET',url:backendUrl+"CheckCandidateApplication"});}
+return{deleteAccount:deleteAccount,getJobs:getJobs,updateUserData:updateUserData,resetPassword:resetPassword,checkForActiveCampaigns:checkForActiveCampaigns,sendVerificationMail:sendVerificationMail,sendVerificationSMS:sendVerificationSMS,sendVerificationSMSCode:sendVerificationSMSCode,UploadProfilePhoto:UploadProfilePhoto,checkCandidateApplication:checkCandidateApplication};}]);

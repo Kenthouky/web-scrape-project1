@@ -1,0 +1,2 @@
+app.factory('MyDonationService',['$http',function($http,$scope){const backendUrl="/api/";function getMyDonationTotal(){return $http.get(backendUrl+"DonationPayment/GetDonationTotal");}
+return{getMyDonationTotal:getMyDonationTotal};}]);

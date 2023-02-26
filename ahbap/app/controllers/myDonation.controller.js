@@ -1,0 +1,2 @@
+app.controller('My_Donation',function($scope,$http,MyDonationService){console.log("My_Donation Controller reporting for duty.");$scope.CURRENT_PRICE=null;$scope.NEW_DONATION_PRICE=null;$scope.changeAmountIsValid=function(){var valid=false;if($scope.NEW_DONATION_PRICE!=undefined&&$scope.NEW_DONATION_PRICE!=null&&$scope.NEW_DONATION_PRICE!=""&&$scope.NEW_DONATION_PRICE>0&&$scope.NEW_DONATION_PRICE!=$scope.CURRENT_PRICE)
+valid=true;return valid;}});

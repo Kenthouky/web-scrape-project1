@@ -1,0 +1,20 @@
+app.factory('AhbapService',['$http',function($http){const backendUrl="/api/";function subscribe(email){return $http({method:'POST',url:backendUrl+"SUBSCRIBE",data:JSON.stringify({mail:email,}),headers:{'Content-Type':'application/json'}});}
+function getUserInfo(){return $http.get(backendUrl+"GET_USER_INFO");}
+function getDonationCategories(){return $http.get(backendUrl+"DonationPayment/GetDonationCategories");}
+function getDonationFeedbackItems(){return $http.get(backendUrl+"DonationPayment/GetDonationFeedbackItems");}
+function getDonationContractItems(){return $http.get(backendUrl+"DonationPayment/GetDonationContractItems");}
+function checkVolunteer(){return $http.get(backendUrl+"CheckVolunteer");}
+function checkUserAgreement(){return $http.get(backendUrl+"CHECK_USER_AGREEMENT");}
+function acceptUserAgreement(){return $http({method:'POST',url:backendUrl+"ACCEPT_USER_AGREEMENT",headers:{'Content-Type':'application/x-www-form-urlencoded'}});}
+function sendConfirmationRequest(){return $http({method:'POST',url:backendUrl+"SEND_CONFIRMATION_REQUEST",headers:{'Content-Type':'application/x-www-form-urlencoded'}});}
+function resetScholarshipApply(){return $http({method:'POST',url:backendUrl+"RESET_SCHOLARSHIP_APPLY",headers:{'Content-Type':'application/x-www-form-urlencoded'}});}
+function login(username,password){return $http({method:'POST',url:backendUrl+"LOGIN",data:$.param({USERNAME:username,PASSWORD:password}),headers:{'Content-Type':'application/x-www-form-urlencoded'}});}
+function register($scope){return $http({method:'POST',url:backendUrl+"REGISTER",data:$.param({DISPILAY_NAME:$scope.DISPILAY_NAME,USERNAME:document.getElementById("USERNAME_sorgu").value,EMAIL:document.getElementById("email_sorgu").value,PASSWORD:$scope.PASSWORD,PASSWORD_CONFIRM:$scope.PASSWORD_CONFIRM,USER_AGREEMENT:$scope.USER_AGREEMENT}),headers:{'Content-Type':'application/x-www-form-urlencoded'}});}
+function logout(){return $http({method:'get',url:"cikis",headers:{'Content-Type':'application/x-www-form-urlencoded'}});}
+function downloadFile(file){return $http({method:'POST',url:backendUrl+"DOWNLOAD_FILE",data:$.param({FILE:file,}),headers:{'Content-Type':'application/x-www-form-urlencoded'}});}
+function removeFile(file,path){return $http({method:'POST',url:backendUrl+"REMOVE_FILE",data:$.param({FILE:file,PATH:path,}),headers:{'Content-Type':'application/x-www-form-urlencoded'}});}
+function uploadAttachment($scope){return $http({method:'POST',url:backendUrl+"UPLOAD_FILE/SOCIAL_MEDIA_CONTENTS",data:fd,headers:{"Content-Type":undefined},uploadEventHandlers:{progress:function(e){if(e.lengthComputable){$scope.progressBar=(e.loaded/e.total)*100;$scope.progressCounter=$scope.progressBar;}}},})}
+function socialMediaConfirmation($scope){return $http({method:'POST',url:backendUrl+"SOCIAL_MEDIA_CONTENT_FOR_CONFIRMATION",data:$.param({CONTENT:$scope.SMCC.CONTENT,ADDITIONAL_NOTES:$scope.SMCC.ADDITIONAL_NOTES,EXTERNAL_FILE_URLS:$scope.SMCC.EXTERNAL_FILE_URLS,PLATFORM:JSON.stringify($scope.SMCC.PLATFORM),SHARING_DATE:moment($scope.SMCC.SHARING_DATE).format("YYYY-MM-DD"),NODE_ID:$scope.SMCC.NODE_ID,FILES:$scope.TMP_UPLOADS,}),headers:{'Content-Type':'application/x-www-form-urlencoded'}});}
+function getFeatureUsability(feature){return $http.get(backendUrl+"GET_FEATURE_USABILITY/"+feature)}
+function getMenus(){return $http.get(backendUrl+"GET_MENUS")}
+return{subscribe:subscribe,getUserInfo:getUserInfo,checkUserAgreement:checkUserAgreement,acceptUserAgreement:acceptUserAgreement,sendConfirmationRequest:sendConfirmationRequest,resetScholarshipApply:resetScholarshipApply,login:login,register:register,logout:logout,downloadFile:downloadFile,removeFile:removeFile,uploadAttachment:uploadAttachment,socialMediaConfirmation:socialMediaConfirmation,getFeatureUsability:getFeatureUsability,checkVolunteer:checkVolunteer,getMenus:getMenus,getDonationCategories:getDonationCategories,getDonationFeedbackItems:getDonationFeedbackItems,getDonationContractItems:getDonationContractItems};}]);

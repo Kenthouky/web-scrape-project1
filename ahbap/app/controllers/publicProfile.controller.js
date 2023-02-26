@@ -1,0 +1,1 @@
+app.controller('PublicProfile',function($scope,PublicProfileService){console.log("PublicProfile Controller reporting for duty.");PublicProfileService.getUserInfo(USER_ID).then(function(response){$scope.USER=response.data;});});
